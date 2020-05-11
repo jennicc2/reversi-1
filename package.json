@@ -1,0 +1,26 @@
+{
+  "name": "reversi-1",
+  "version": "1.0.0",
+  "description": "Web app reversi try 2",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jennicc2/reversi-1.git"
+  },
+  "keywords": [
+    "reversi"
+  ],
+  "author": "Jenni Chan",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/jennicc2/reversi-1/issues"
+  },
+  "homepage": "https://github.com/jennicc2/reversi-1#readme",
+  "dependencies": {
+    "node-static": "^0.7.11",
+    "socket.io": "^2.3.0"
+  }
+}
