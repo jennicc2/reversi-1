@@ -124,7 +124,6 @@ socket.on('player_disconnected',function(payload){
 });
 
 
-
 socket.on('send_message_response',function(payload){
   if(payload.result == 'fail'){
         alert(payload.message);
