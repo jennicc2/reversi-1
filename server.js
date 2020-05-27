@@ -1,16 +1,16 @@
 /*********************************************/
 /* 			set up the static file server 			*/
 
-/*include static file webserver library */
+/* include static file webserver library */
 var static = require('node-static');
 /*include http server library */
 var http = require('http');
 
-/*assumption run on heroku*/
+/* assumption that the code is run on heroku */
 var port = process.env.PORT;
 var directory = __dirname + '/public';
 
-/*not on heroku so adjust port and directory*/
+/* if not on heroku we need to adjust port and directory */
 if(typeof port == 'undefined' || !port){
 	directory = './public';
 	port = 8080;

@@ -152,7 +152,7 @@ socket.on('invited',function(payload){
   $('.socket_'+payload.socket_id+' button').replaceWith(newNode);
 });
 
-/* uninvite */
+/* uninvite stuff */
 /* Send an uninvite message to the server */
 function uninvite(who){
 	var payload = {};
