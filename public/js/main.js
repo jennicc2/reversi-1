@@ -122,6 +122,7 @@ socket.on('player_disconnected',function(payload){
 	newNode.slideDown(1000);
 });
 
+
 /* invite stuff */
 /* send an invite message to the server */
 function invite(who){
@@ -168,7 +169,7 @@ socket.on('uninvite_response',function(payload){
 		alert(payload.message);
 		return;
 	}
-	var newNode = makeInviteButton(payload.socket_id);
+	var newNode = makeInviteNowButton(payload.socket_id);
 	$('.socket_'+payload.socket_id+' button').replaceWith(newNode);
 });
 
@@ -178,7 +179,7 @@ socket.on('uninvited',function(payload){
 		alert(payload.message);
 		return;
 	}
-	var newNode = makeInviteButton(payload.socket_id);
+	var newNode = makeInviteNowButton(payload.socket_id);
 	$('.socket_'+payload.socket_id+' button').replaceWith(newNode);
 });
 
@@ -253,6 +254,15 @@ function makePlayButton(socket_id){
 		game_start(socket_id);
 	});
 	return(newNode);
+}
+
+function makeInviteNowButton(socket_id){
+  var newHTML = '<button type=\'button\' class=\'btn btn-outline-info\'>Invite Now</button>';
+  var newNode = $(newHTML);
+	newNode.click(function(){
+		invite(socket_id);
+	});
+  return(newNode);
 }
 
 function makeEngagedButton(){
