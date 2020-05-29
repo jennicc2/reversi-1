@@ -561,7 +561,7 @@ function create_new_game(){
 }
 
 
-function send_game_update(socket, game_id, message)[
+function send_game_update(socket, game_id, message){
 		/* check to see if a game with game_id already exists */
 			if(('undefined' === typeof games[game_id]) || !games[game_id]){
 					/* no game exists, so make one */
@@ -584,4 +584,4 @@ function send_game_update(socket, game_id, message)[
 
 
 		  /* check to see if a game is over */
-]
+}
