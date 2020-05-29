@@ -280,7 +280,7 @@ $(function(){
 	console.log('*** Client Log Message: \'join_room\' payload: '+JSON.stringify(payload));
 	socket.emit('join_room',payload);
 
-	$('#quit').append('<a href="lobby.html?username='+username+'" class="btn btn-danger btn-default active" role="button" aria-pressed="true">Quit</a>');
+$('#quit').append('<a href="lobby.html?username='+username+'" class="btn btn-danger btn-default active" role="button" aria-pressed="true">Quit</a>');
 
 });
 
@@ -299,8 +299,8 @@ var old_board = [
 					['?','?','?','?','?','?','?','?']
 				];
 
-var my_color = ' ';
-var interval_timer;
+/* var my_color = ' ';
+var interval_timer; */
 
 
 socket.on('game_update',function(payload){
@@ -314,6 +314,7 @@ socket.on('game_update',function(payload){
 	}
 
 	/* Check for a good board in the payload */
+
 	var board = payload.game.board;
 	if('undefined' == typeof board || !board){
 		console.log('Internal error: received a malformed board update from the server');
@@ -321,6 +322,8 @@ socket.on('game_update',function(payload){
 	}
 
 	/* Update my color */
+
+/*
 	if(socket.id == payload.game.player_white.socket){
 		my_color = 'white';
 	}
@@ -328,8 +331,12 @@ socket.on('game_update',function(payload){
 		my_color = 'black';
 	}
 	else{
+		*/
+
 		/* Something weird is going on, like three people playing at once */
 		/* send client back to the lobby */
+
+/*
 		window.location.href = 'lobby.html?username='+username;
 		return;
 	}
@@ -354,7 +361,7 @@ socket.on('game_update',function(payload){
 		}}(payload.game.last_move_time)
 		, 1000);
 
-
+*/
 
 
 	/* Animate changes to the board */
@@ -364,12 +371,12 @@ socket.on('game_update',function(payload){
 	var row,column;
 	for(row = 0; row < 8; row++){
 		for(column = 0; column < 8; column++){
-			if(board[row][column] == 'b'){
+			/*if(board[row][column] == 'b'){
 				blacksum++;
 			}
 			if(board[row][column] == 'w'){
 				whitesum++;
-			}
+			}*/
 
 			/* If a board space has changed */
 			if(old_board[row][column] != board[row][column]){
