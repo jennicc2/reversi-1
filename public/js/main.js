@@ -413,6 +413,7 @@ socket.on('game_update',function(payload){
 			}
 
 			/* Set up interactivity */
+			/*
 			$('#'+row+'_'+column).off('click');
 			$('#'+row+'_'+column).removeClass('hovered_over');
 
@@ -435,36 +436,7 @@ socket.on('game_update',function(payload){
 	}
 	$('#blacksum').html(blacksum);
 	$('#whitesum').html(whitesum);
-
+*/
+}
 	old_board = board;
-});
-
-
-
-socket.on('play_token_response',function(payload){
-
-	console.log('*** Client Log Message: \'play_token_response\'\n\tpayload: '+JSON.stringify(payload));
-	/* Check for a good play_token_response */
-	if(payload.result == 'fail'){
-		console.log(payload.message);
-		alert(payload.message);
-		return;
-	}
-});
-
-
-
-socket.on('game_over',function(payload){
-
-	console.log('*** Client Log Message: \'game_over\'\n\tpayload: '+JSON.stringify(payload));
-	/* Check for a good play_token_response */
-	if(payload.result == 'fail'){
-		console.log(payload.message);
-		return;
-	}
-
-	/* Jump to a new page */
-
-	$('#game_over').html('<h1>Game Over</h1><h2>'+payload.who_won+' won!</h2>');
-	$('#game_over').append('<a href="lobby.html?username='+username+'" class="btn btn-success btn-lg active" role="button" aria-pressed="true">Return to the lobby</a>');
 });
