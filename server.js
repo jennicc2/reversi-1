@@ -153,7 +153,6 @@ io.sockets.on('connection', function (socket) {
         if(room !=='lobby'){
 						send_game_update(socket,room,'initial update');
 				}
-
 			});
 
 
@@ -563,9 +562,8 @@ function create_new_game(){
 
 
 function send_game_update(socket, game_id, message)[
-
-			/* check to see if a game with game_id already exists */
-			if(('undefined' === typeof games[game_id]) !games[game_id]){
+		/* check to see if a game with game_id already exists */
+			if(('undefined' === typeof games[game_id]) || !games[game_id]){
 					/* no game exists, so make one */
 					console.log('no game exists. creating '+game_id+' for '+socket.id);
 					games[game_id] = create_new_game();
