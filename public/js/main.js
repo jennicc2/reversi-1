@@ -310,9 +310,6 @@ var old_board = [
 					['?','?','?','?','?','?','?','?']
 				];
 
-var my_color = ' ';
-var interval_timer;
-
 
 socket.on('game_update',function(payload){
 
@@ -335,18 +332,9 @@ socket.on('game_update',function(payload){
 
 	/* Animate changes to the board */
 
-	var blacksum = 0;
-	var whitesum = 0;
 	var row,column;
 	for(row = 0; row < 8; row++){
 		for(column = 0; column < 8; column++){
-			if(board[row][column] == 'b'){
-				blacksum++;
-			}
-			if(board[row][column] == 'w'){
-				whitesum++;
-			}
-
 			/* If a board space has changed */
 			if(old_board[row][column] != board[row][column]){
 				if(old_board[row][column] == '?' && board[row][column] == ' '){
@@ -380,9 +368,6 @@ socket.on('game_update',function(payload){
 					$('#'+row+'_'+column).html('<img src="assets/images/error.gif" alt="error"/>');
 				}
 			}
-
-			/* Set up interactivity */
-
 		}
 	}
 	old_board = board;

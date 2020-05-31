@@ -150,14 +150,13 @@ io.sockets.on('connection', function (socket) {
 
 				log('Room ' + room + ' was just joined by '+ username);
 
-        if(room !=='lobby'){
-						send_game_update(socket,room,'initial update');
+				if(room !== 'lobby'){
+					send_game_update(socket,room,'initial update');
 				}
 			});
 
 
 
-        /* when a web page disconnects alert everyone in the room */
 				socket.on('disconnect',function(){
 					log('Client disconnected '+JSON.stringify(players[socket.id]));
 
@@ -527,8 +526,8 @@ io.sockets.on('connection', function (socket) {
 
 });
 
-/*******************************************/
-/* this is code related to the game state */
+/**********************************************************************/
+/*   This is code related to the game state */
 
 var games = [];
 
@@ -541,47 +540,48 @@ function create_new_game(){
 		new_game.player_black.socket = '';
 		new_game.player_black.username = '';
 
-		var d = new Date();
+    var d = new Date();
 		new_game.last_move_time = d.getTime();
 
 		new_game.whose_turn = 'white';
 
 		new_game.board = [
-			     							[' ',' ',' ',' ',' ',' ',' ',' '],
-			     							[' ',' ',' ',' ',' ',' ',' ',' '],
-			     							[' ',' ',' ',' ',' ',' ',' ',' '],
-												[' ',' ',' ','w','b',' ',' ',' '],
-												[' ',' ',' ','b','w',' ',' ',' '],
-												[' ',' ',' ',' ',' ',' ',' ',' '],
-												[' ',' ',' ',' ',' ',' ',' ',' '],
-												[' ',' ',' ',' ',' ',' ',' ',' '],
-											];
-
+													[' ',' ',' ',' ',' ',' ',' ',' '],
+													[' ',' ',' ',' ',' ',' ',' ',' '],
+													[' ',' ',' ',' ',' ',' ',' ',' '],
+													[' ',' ',' ','w','b',' ',' ',' '],
+													[' ',' ',' ','b','w',' ',' ',' '],
+													[' ',' ',' ',' ',' ',' ',' ',' '],
+													[' ',' ',' ',' ',' ',' ',' ',' '],
+													[' ',' ',' ',' ',' ',' ',' ',' '],
+										 ];
 		return new_game;
 }
 
-
 function send_game_update(socket, game_id, message){
-		/* check to see if a game with game_id already exists */
-			if(('undefined' === typeof games[game_id]) || !games[game_id]){
-					/* no game exists, so make one */
-					console.log('no game exists. creating '+game_id+' for '+socket.id);
-					games[game_id] = create_new_game();
-			}
+		/* Check to see if a game with game_id already exists */
+    if((undefined === typeof games[game_id]) || !games[game_id]){
+				/* No game exists so you need to make one */
+				console.log('No game exists. Creating '+game_id+' for '+socket.id);
+				games[game_id] = create_new_game();
+		}
 
-			/* make sure only 2 people are in the game room */
+		/* Make sure that only two people are in the game room */
 
-			/* assign this socket a color */
+		/* Assign this socket a color */
 
-			/* send the game update */
-			var success_data = {
-													result: 'success',
-													game: games[game_id],
-													message: message,
-													game_id: game_id
-												};
-			io.in(game_id).emit('game_update',success_data);
+		/* Send game update */
+		var success_data = {
+												result: 'success',
+												game: games[game_id],
+												message: message,
+												game_id: game_id
+											};
+
+		io.in(game_id).emit('game_update', success_data);
 
 
-		  /* check to see if a game is over */
+
+		/* Check to see if the game is over */
+
 }
