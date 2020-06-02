@@ -961,7 +961,7 @@ function send_game_update(socket, game_id, message){
 			var success_data = {
 													result:'success',
 													game: games[game_id],
-													who_won: 'winner',
+													who_won: winner,
 													game_id: game_id
 												};
 			io.in(game_id).emit('game_over', success_data);
